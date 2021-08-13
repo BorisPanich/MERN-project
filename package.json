@@ -7,16 +7,23 @@
     "start": "node app.js",
     "server": "nodemon app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorisPanich/MERN-project.git"
+  },
   "keywords": [
     "mern",
     "react"
   ],
-  "author": "Boris Panich <panich2303@gmail.com>",
+  "author": "Boris Panich <panich2303@gmail.com",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BorisPanich/MERN-project/issues"
+  },
+  "homepage": "https://github.com/BorisPanich/MERN-project#readme",
   "dependencies": {
     "config": "^3.3.6",
     "express": "^4.17.1",
-    "express-mongoose": "^0.1.0",
     "mongoose": "^5.13.7"
   },
   "devDependencies": {
@@ -24,5 +31,3 @@
     "nodemon": "^2.0.12"
   }
 }
-
-.idea/*
