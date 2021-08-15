@@ -1,14 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "materialize-css";
 import {useHttp} from "../hooks/http.hook";
+import {useMessage} from "../hooks/message.hook";
 
 export const AuthPage = () => {
-
-    const {loading, request} = useHttp();
+    const {loading, request, error, clearError} = useHttp();
     const [form, setForm] = useState({
-        email: "",
-        password: ""
+        email: "", password: ""
     });
+
+    const message = useMessage()
+
+    useEffect(() => {
+        // console.log('Error', error)
+        message(error)
+        clearError()
+    }, [error, message, clearError])
 
     const changeHandler = (e) => {
         setForm({...form, [e.target.name]: e.target.value})
@@ -18,12 +25,21 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             //    request with 3 parameters (url from auth.routes)
-            const data = await request('api/auth/register', 'POST', {...form})
-
+            const data = await request('/api/auth/register', 'POST', {...form})
+            message(data.message)
         } catch (e) {
-
         }
     }
+    // methode logining
+    const loginHandler = async () => {
+        try {
+            //    request with 3 parameters (url from auth.routes)
+            const data = await request('/api/auth/login', 'POST', {...form})
+            message(data.message)
+        } catch (e) {
+        }
+    }
+
 
     return (
         <div className="row">
@@ -61,6 +77,7 @@ export const AuthPage = () => {
                         <button
                             className="btn yellow darken-3"
                             style={{marginRight: 10}}
+                            onClick={loginHandler}
                             disabled={loading}
                         >Login
                         </button>
