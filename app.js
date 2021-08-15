@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+// parsing req.body (для исключения ошибки в режиме undefind)
+app.use(express.json({extended: true}))
+
 // register ROUTE
 app.use('/api/auth', require('./routes/auth.routes'))
 

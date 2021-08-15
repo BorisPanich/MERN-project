@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import "materialize-css";
+import {useHttp} from "../hooks/http.hook";
 
 export const AuthPage = () => {
+
+    const {loading, request} = useHttp();
     const [form, setForm] = useState({
         email: "",
         password: ""
@@ -9,6 +12,17 @@ export const AuthPage = () => {
 
     const changeHandler = (e) => {
         setForm({...form, [e.target.name]: e.target.value})
+    }
+
+    // methode register
+    const registerHandler = async () => {
+        try {
+            //    request with 3 parameters (url from auth.routes)
+            const data = await request('api/auth/register', 'POST', {...form})
+
+        } catch (e) {
+
+        }
     }
 
     return (
@@ -44,8 +58,18 @@ export const AuthPage = () => {
                         </div>
                     </div>
                     <div className="card-action">
-                        <button className="btn yellow darken-3" style={{marginRight: 10}}>Login</button>
-                        <button className="btn grey lighten-4 black-text">Registration</button>
+                        <button
+                            className="btn yellow darken-3"
+                            style={{marginRight: 10}}
+                            disabled={loading}
+                        >Login
+                        </button>
+                        <button
+                            className="btn grey lighten-4 black-text"
+                            onClick={registerHandler}
+                            disabled={loading}
+                        >Registration
+                        </button>
                     </div>
                 </div>
             </div>
