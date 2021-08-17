@@ -1,5 +1,6 @@
 {
   "port": 5000,
   "jwtSecret": "mother's maiden name",
-  "mongoUri": "mongodb+srv://Boris:Cd4zRj=Vv!PCsGK@cluster0.cfke3.mongodb.net/app?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://Boris:Cd4zRj=Vv!PCsGK@cluster0.cfke3.mongodb.net/app?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000"
 }

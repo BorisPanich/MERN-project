@@ -4,12 +4,12 @@ const mongoose = require('mongoose')
 
 const app = express()
 
-// parsing req.body (для исключения ошибки в режиме undefind)
+// parsing req.body (для исключения ошибки в режиме undefined)
 app.use(express.json({extended: true}))
 
-// register ROUTE
+// register ROUTE (connecting middleware)
 app.use('/api/auth', require('./routes/auth.routes'))
-
+app.use('/api/link', require('./routes/link.routes'))
 
 // constants
 const PORT = config.get('port') || 5000
