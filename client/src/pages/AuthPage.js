@@ -26,8 +26,16 @@ export const AuthPage = () => {
     const changeHandler = (e) => {
         setForm({...form, [e.target.name]: e.target.value})
     }
+    const changeHandlerKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            try {
+                setForm({...form, [e.target.name]: e.target.value})
+            } catch (e) {
+            }
+        }
+    }
 
-    // methode register
+    // register method
     const registerHandler = async () => {
         try {
             //    request with 3 parameters (url from auth.routes)
@@ -36,7 +44,7 @@ export const AuthPage = () => {
         } catch (e) {
         }
     }
-    // methode logining
+    // login method
     const loginHandler = async () => {
         try {
             //    request with 3 parameters (url from auth.routes)
@@ -64,6 +72,7 @@ export const AuthPage = () => {
                                     className="yellow-input"
                                     value={form.email}
                                     onChange={changeHandler}
+                                    onKeyPress={changeHandlerKeyPress}
                                 />
                                 <label htmlFor="email">Email</label>
                                 <div className="input-field">
